@@ -1,0 +1,42 @@
+const employee = require('../models/employee')
+const employeeController = {};
+
+employeeController.getEmployees = async (req, res) => {
+    const employees = await employee.find();
+    res.json(employees)
+};
+
+employeeController.createEmployees = async (req, res) => {
+    const saveEmployee = new employee(req.body);
+    await saveEmployee.save()
+    res.json({
+        'status': 'Employee Save'
+    })
+};
+
+employeeController.getEmployee = async (req, res) => {    
+    const showEmployee = await employee.findById(req.params.id);
+    res.json(showEmployee);
+};
+
+employeeController.editEmployee = async (req, res) => {
+    const { id } = req.params;
+    const editEmployee = {
+        name: req.body.name,
+        lastName: req.body.lastName
+    }
+   await employee.findOneAndUpdate(id, {$set: editEmployee}, {new: true});
+    res.json({
+        status: 'employee update'
+    })
+};
+
+employeeController.deleteEmployees = async(req, res) => {
+    const { id } = req.params.id;
+    await employee.findOneAndDelete(id);
+    res.json({
+        status: 'Employee Delete'
+    });
+};
+
+module.exports = employeeController;
