@@ -1,6 +1,7 @@
 const employee = require('../models/employee')
 const employeeController = {};
 
+//Se obtienen todos los empleados
 employeeController.getEmployees = async (req, res) => {
     const employees = await employee.find();
     res.json(employees)
@@ -14,6 +15,7 @@ employeeController.createEmployees = async (req, res) => {
     })
 };
 
+//Se obtiene un solo empleado
 employeeController.getEmployee = async (req, res) => {    
     const showEmployee = await employee.findById(req.params.id);
     res.json(showEmployee);
