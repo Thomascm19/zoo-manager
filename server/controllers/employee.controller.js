@@ -1,12 +1,13 @@
 const employee = require('../models/employee')
 const employeeController = {};
 
-//Se obtienen todos los empleados
+//Obtiene todos los empleados
 employeeController.getEmployees = async (req, res) => {
     const employees = await employee.find();
     res.json(employees)
 };
 
+//Crea un nuevo empleado
 employeeController.createEmployees = async (req, res) => {
     const saveEmployee = new employee({
         name: req.body.name,
@@ -18,12 +19,13 @@ employeeController.createEmployees = async (req, res) => {
     })
 };
 
-//Se obtiene un solo empleado
+//Obtiene un solo empleado
 employeeController.getEmployee = async (req, res) => {    
     const showEmployee = await employee.findById(req.params.id);
     res.json(showEmployee);
 };
 
+//Edita un empleado por id
 employeeController.editEmployee = async (req, res) => {
     const { id } = req.params;
     const editEmployee = {
@@ -36,8 +38,9 @@ employeeController.editEmployee = async (req, res) => {
     })
 };
 
+//Elimina un empleado por el id
 employeeController.deleteEmployees = async(req, res) => {
-    const { id } = req.params.id;
+    const { id } = req.params;
     await employee.findOneAndDelete(id);
     res.json({
         status: 'Employee Delete'
