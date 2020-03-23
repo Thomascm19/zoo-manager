@@ -1,14 +1,12 @@
-export class Employee {
-
+export class GeographicalArea {
     // tslint:disable-next-line:variable-name
-    constructor(_id = '', name = '', lastName = '') {
+    constructor(_id = '', name= '', employee= '') {
         this._id = _id;
         this.name = name;
-        this.lastName = lastName;
+        this.employee = employee;
     }
-
     // tslint:disable-next-line:variable-name
     _id: string;
     name: string;
-    lastName: string;
+    employee: any;
 }
