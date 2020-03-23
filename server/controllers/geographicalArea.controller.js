@@ -1,16 +1,23 @@
 const geographicalArea = require('../models/geographicalArea')
+const mongoose = require('mongoose');
+const Employee = mongoose.model('Employee');
 const geographicalAreaController = {};
 
 //Obtienen todas las zonas geograficas
 geographicalAreaController.getGeographicalAreas = async (req, res) => {
-    const geographicalAreas = await geographicalArea.find();
-    res.json(geographicalAreas)
+    geographicalArea.find({}, function(err, geographical){
+        Employee.populate(geographical, {path: "employee"}, function(err, geographical){
+            res.json(geographical)
+        })
+    })
+    // const geographicalAreas = await geographicalArea.find();
+    // res.json(geographicalAreas)
 };
 
 //Crea una nueva zona geografica
 geographicalAreaController.createGeographicalArea = async (req, res) => {
     const saveGeographicalArea = new geographicalArea({
-        name: req.body.name,
+        name: req.body.geographicalAreaName,
         employeeName: req.body.employee.name,
         employeeLastName: req.body.employee.lastName
     });

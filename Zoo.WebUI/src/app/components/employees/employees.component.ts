@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { NgForm } from '@angular/forms';
-import { Employee } from 'src/app/models/employee';
+import { Employee } from 'src/app/models/employee.model';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css'],
   providers: [EmployeeService]
 })
 export class EmployeesComponent implements OnInit {
