@@ -1,7 +1,7 @@
 const zoo = require('../models/zoo')
 const zooController = {};
 
-//Se obtienen todos los empleados
+//Se obtiene el zoologico
 zooController.getZoo = async(req, res) => {
     const zoos = await zoo.find();
     res.json(zoos)
@@ -16,7 +16,7 @@ zooController.createZoo = async(req, res) => {
         'status': 'Zoo Save'
     })
 };
-
+//Se edita el zoologico
 zooController.editZoo = async(req, res) => {
     const { id } = req.params;
     const editZoo = {
@@ -29,6 +29,7 @@ zooController.editZoo = async(req, res) => {
     })
 };
 
+//Se elimina el zoologico
 zooController.deletezoo = async(req, res) => {
     const { id } = req.params.id;
     await zoo.findOneAndDelete(id);
