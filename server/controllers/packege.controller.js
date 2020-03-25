@@ -5,22 +5,18 @@ const packegeController = {};
 
 //Obtienen todos los paquetes
 packegeController.getPackeges = async(req, res) => {
-    packegeController.find({}, function(err, packege) {
-        Client.populate(packege, { path: "client" }, function(err, geographical) {
-            res.json(packege)
-        })
-    })
-
+    const packeges = await packege.find();
+    res.json(packeges)
 };
 
 //Crea un nuevo paquete
 packegeController.createPackege = async(req, res) => {
     const savePackege = new packege({
-        name: req.body.packegeName,
-        precio: req.body.packegePrecio,
-        descripcion: req.body.packegeDescripcion,
+        name: req.body.name,
+        precio: req.body.precio,
+        descripcion: req.body.descripcion,
         clientName: req.body.client.name,
-        clientEdad: req.body.client.lastName
+        clientEdad: req.body.client.edad
     });
     await savePackege.save()
     res.json({
@@ -38,9 +34,9 @@ packegeController.getPackege = async(req, res) => {
 packegeController.editPackege = async(req, res) => {
     const { id } = req.params;
     const editPackege = {
-        name: req.body.packegeName,
-        precio: req.body.packegePrecio,
-        descripcion: req.body.packegeDescripcion,
+        name: req.body.name,
+        precio: req.body.precio,
+        descripcion: req.body.descripcion,
         clientName: req.body.client.name,
         clientEdad: req.body.client.lastName
     }

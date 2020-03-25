@@ -40,7 +40,7 @@ clientController.editClient = async(req, res) => {
     }
     await client.findOneAndUpdate(id, { $set: editClient }, { new: true });
     res.json({
-        status: 'client update'
+        status: 'Client update'
     })
 };
 
