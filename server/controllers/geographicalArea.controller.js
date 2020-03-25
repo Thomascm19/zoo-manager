@@ -10,16 +10,13 @@ geographicalAreaController.getGeographicalAreas = async (req, res) => {
             res.json(geographical)
         })
     })
-    // const geographicalAreas = await geographicalArea.find();
-    // res.json(geographicalAreas)
 };
 
 //Crea una nueva zona geografica
 geographicalAreaController.createGeographicalArea = async (req, res) => {
     const saveGeographicalArea = new geographicalArea({
         name: req.body.geographicalAreaName,
-        employeeName: req.body.employee.name,
-        employeeLastName: req.body.employee.lastName
+        employeeName: req.body.employeeSelected
     });
     await saveGeographicalArea.save()
     res.json({
@@ -47,7 +44,7 @@ geographicalAreaController.editGeographicalArea = async(req, res) => {
 
 //Elimina una sola zona geografica por el id 
 geographicalAreaController.deleteGeographicalArea = async (req, res) =>{
-    const { id } = req.params.id;
+    const { id } = req.params;
     await geographicalArea.findOneAndDelete(id);
     res.json({
         status: 'Geographical Area Delete'

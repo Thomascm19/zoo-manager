@@ -1,52 +1,56 @@
 <div class="row">
-    <div class="col">
-        <div class="card" style="width: 28rem;">
-        <div class="card-body">
-            <form #geographicalAreaForm="ngForm" (ngSubmit)="addGeographicalArea()">
-                <div class="form-group">
-                    <label for="geographicalAreaName">Nombre de la zona geografica</label>
-                    <input type="text" class="form-control" id="geographicalAreaName" name="geographicalAreaName" placeholder="Ingrese la zona geografica"
-                    #name='ngModel' [(ngModel)]="geographicalAreaService.geographicalAreaSelected.name">
-                </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="employeeSelected">Empleado asigando</label>
-                        <select class="form-control" id="employeeSelected">
-                          <option>Thomas</option>
-                          <option>Felipe</option>
-                          <option>Maria</option>                          
-                        </select>
-                      </div>
-                </div>
-                <button type="button" class="btn btn-success mr-2" (click)="addGeographicalArea(geographicalAreaForm)">Guardar</button>
-                <button type="button" class="btn btn-primary">Limpiar</button>
-            </form>
-        </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Empleado</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let geo of geographicalAreaService.geographicalArea">
-                            <td>{{geo.name}}</td>
-                            <div *ngFor="let employee of geo.employee | keyvalue">
-                            <td>{{ employee.value }}</td>
-                            </div>
-                            <td><a><i class="fas fa-user-edit"></i></a></td>
-                            <td><a><i class="fas fa-trash-alt"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>
+  <div class="col">
+    <div class="card" style="width: 28rem;">
+      <div class="card-body">
+        <form #geographicalAreaForm="ngForm" (ngSubmit)="addGeographicalArea()">
+          <input type="hidden" name="_id" #id="ngModel"
+            [(ngModel)]="geographicalAreaService.geographicalAreaSelected._id">
+          <div class="form-group">
+            <label for="geographicalAreaName">Nombre de la zona geografica</label>
+            <input type="text" class="form-control" id="geographicalAreaName" name="geographicalAreaName"
+              placeholder="Ingrese la zona geografica" #name='ngModel'
+              [(ngModel)]="geographicalAreaService.geographicalAreaSelected.name">
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label for="employeeSelected" for="employeeName">Empleado asigando</label>
+              <select class="form-control" name="employeeSelected" id="employeeSelected"
+                [(ngModel)]="geographicalAreaService.geographicalAreaSelected.employee">
+                <option *ngFor='let employee of employeeService.employees' [ngValue]="employee.name">{{employee.name}}
+                </option>
+              </select>
             </div>
-        </div>
+          </div>
+          <button type="button" class="btn btn-success mr-2"
+            (click)="addGeographicalArea(geographicalAreaForm)">Guardar</button>
+          <button type="button" class="btn btn-primary" (click)="resetForm(geographicalAreaForm)">Limpiar</button>
+        </form>
+      </div>
     </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <th scope="col">Nombre</th>
+            <th scope="col">Empleado</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let geo of geographicalAreaService.geographicalArea">
+              <td>{{geo.name}}</td>
+              <div *ngFor="let employee of geo.employee | keyvalue">
+                <td>{{ employee.value }}</td>
+              </div>
+              <td><a (click)="editGeographicalArea(geo)"><i class="fas fa-user-edit"></i></a></td>
+              <td><a (click)="deleteGeographicalArea(geo._id)"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

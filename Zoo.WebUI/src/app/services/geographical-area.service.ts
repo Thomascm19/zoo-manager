@@ -22,4 +22,12 @@ export class GeographicalAreaService {
     postGeographicalArea(geographicalArea: GeographicalArea) {
         return this.http.post(this.URL_API, geographicalArea);
     }
+
+    putGeographicalArea(geographicalArea: GeographicalArea) {
+        return this.http.put(this.URL_API + `/${geographicalArea._id}`, geographicalArea);
+    }
+
+    deleteGeographicalArea(id: string) {
+        return this.http.delete(this.URL_API + `/${id}`);
+    }
 }
