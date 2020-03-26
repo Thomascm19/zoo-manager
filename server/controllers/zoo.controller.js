@@ -1,15 +1,22 @@
 const zoo = require('../models/zoo')
+const mongoose = require('mongoose');
+const GeographicalArea = mongoose.model('GeographicalArea');
 const zooController = {};
 
 //Se obtiene el zoologico
-zooController.getZoo = async(req, res) => {
-    const zoos = await zoo.find();
-    res.json(zoos)
+zooController.getZoo = async(req, res) => {    
+    zoo.find({}, function(err, zooParam){
+        GeographicalArea.populate(zooParam, {path: "geographicalArea"}, function(err, zooParam){
+            res.json(zooParam)
+        })
+    })
 };
+
 zooController.createZoo = async(req, res) => {
     const saveZoo = new zoo({
         name: req.body.name,
-        nit: req.body.nit
+        nit: req.body.nit,
+        geographicalArea: req.body.geographicalArea
     });
     await saveZoo.save()
     res.json({

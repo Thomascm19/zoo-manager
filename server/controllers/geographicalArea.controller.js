@@ -16,7 +16,7 @@ geographicalAreaController.getGeographicalAreas = async (req, res) => {
 geographicalAreaController.createGeographicalArea = async (req, res) => {
     const saveGeographicalArea = new geographicalArea({
         name: req.body.geographicalAreaName,
-        employeeName: req.body.employeeSelected
+        employee: req.body.employee
     });
     await saveGeographicalArea.save()
     res.json({
@@ -34,7 +34,7 @@ geographicalAreaController.getGeographicalArea = async (req, res) => {
 geographicalAreaController.editGeographicalArea = async(req, res) => {
     const { id } = req.params;
     const editGeographicalArea = {
-        name: req.body.name
+        name: req.body.geographicalAreaName
     }
     await geographicalArea.findOneAndUpdate(id, {$set: editGeographicalArea}, {new: true});
         res.json({
