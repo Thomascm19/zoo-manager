@@ -37,7 +37,7 @@ zooController.editZoo = async(req, res) => {
 };
 
 //Se elimina el zoologico
-zooController.deletezoo = async(req, res) => {
+zooController.deleteZoo = async(req, res) => {
     const { id } = req.params.id;
     await zoo.findOneAndDelete(id);
     res.json({
