@@ -32,7 +32,7 @@ employeeController.editEmployee = async (req, res) => {
         name: req.body.name,
         lastName: req.body.lastName
     }
-   await employee.findOneAndUpdate(id, {$set: editEmployee}, {new: true});
+   await employee.findByIdAndUpdate(id, {$set: editEmployee}, {new: true});
     res.json({
         status: 'employee update'
     })
@@ -41,7 +41,7 @@ employeeController.editEmployee = async (req, res) => {
 //Elimina un empleado por el id
 employeeController.deleteEmployees = async(req, res) => {
     const { id } = req.params;
-    await employee.findOneAndDelete(id);
+    await employee.findByIdAndRemove(id);
     res.json({
         status: 'Employee Delete'
     });

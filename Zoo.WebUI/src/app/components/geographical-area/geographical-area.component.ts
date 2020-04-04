@@ -34,19 +34,24 @@ export class GeographicalAreaComponent implements OnInit {
     this.geographicalAreaService.putGeographicalArea(form.value)
       .subscribe(res => {
         this.getGeographicalArea();
-        this.resetForm();
+        this.resetForm(form);
       });
     } else {
       this.geographicalAreaService.postGeographicalArea(form.value)
         .subscribe(res => {
           this.getGeographicalArea();
-          this.resetForm();
+          this.resetForm(form);
         });
     }
   }
 
   editGeographicalArea(geographicalArea: GeographicalArea) {
-    this.geographicalAreaService.geographicalAreaSelected = geographicalArea;
+    this.geographicalAreaService.geographicalAreaSelected._id = geographicalArea._id;
+    this.geographicalAreaService.geographicalAreaSelected.name = geographicalArea.name;
+    this.geographicalAreaService.geographicalAreaSelected.firstEmployee = geographicalArea.firstEmployee._id;
+    this.geographicalAreaService.geographicalAreaSelected.secondEmployee = geographicalArea.secondEmployee._id;
+    this.geographicalAreaService.geographicalAreaSelected.thirdEmployee = geographicalArea.thirdEmployee._id;
+    this.geographicalAreaService.geographicalAreaSelected.fourthEmployee = geographicalArea.fourthEmployee._id;
   }
 
   deleteGeographicalArea(id: string) {

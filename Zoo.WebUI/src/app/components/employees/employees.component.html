@@ -3,7 +3,7 @@
     <div class="card" style="width: 28rem;">
       <div class="card-body">
         <form #employeeForm="ngForm" (ngSubmit)="addEmployee()">
-          <input type="hidden" name="id" #id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
           <div class="form-group">
             <label for="employeeName">Nombre</label>
             <input type="text" class="form-control" id="employeeName" name="name" placeholder="Ingresa tu nombre"
@@ -21,7 +21,6 @@
       </div>
     </div>
   </div>
-
   <div class="col">
     <div class="card">
       <div class="card-body">
@@ -33,7 +32,8 @@
             <th scope="col">Eliminar</th>
           </thead>
           <tbody>
-            <tr *ngFor="let employee of employeeService.employees">              
+            <app-loading class="content" *ngIf="loading"></app-loading>
+            <tr *ngFor="let employee of employeeService.employees">
               <td>{{employee.name}}</td>
               <td>{{employee.lastName}}</td>
               <td><a (click)="editEmployee(employee)"><i class="fas fa-user-edit"></i></a></td>
@@ -44,4 +44,6 @@
       </div>
     </div>
   </div>
+
+
 </div>

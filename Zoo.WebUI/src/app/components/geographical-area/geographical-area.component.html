@@ -11,19 +11,55 @@
               placeholder="Ingrese la zona geografica" #name='ngModel'
               [(ngModel)]="geographicalAreaService.geographicalAreaSelected.name">
           </div>
+          <!-- Select first Employee -->
           <div class="form-group">
-            <div class="form-group">
-              <label for="employeeSelected" for="employeeName">Empleado asigando</label>
-              <select class="form-control" name="employeeSelected" id="employeeSelected"
-                [(ngModel)]="geographicalAreaService.geographicalAreaSelected.employee">
-                <option *ngFor='let employee of employeeService.employees' [ngValue]="employee.name">{{employee.name}}
-                </option>
-              </select>
-            </div>
+            <label for="firstEmployeeSelected" for="employeeName">Empleado asigando</label>
+            <select class="form-control" name="firstEmployeeSelected" id="firstEmployeeSelected"
+              [(ngModel)]="geographicalAreaService.geographicalAreaSelected.firstEmployee">
+              <option value="">Selecciona...</option>
+              <option *ngFor='let employee of employeeService.employees' [ngValue]="employee._id">
+                {{employee.name}} {{employee.lastName}}
+              </option>
+            </select>
           </div>
-          <button type="button" class="btn btn-success mr-2"
-            (click)="addGeographicalArea(geographicalAreaForm)">Guardar</button>
-          <button type="button" class="btn btn-primary" (click)="resetForm(geographicalAreaForm)">Limpiar</button>
+          <!-- Select second Employee -->
+          <div class="form-group">
+            <label for="secondEmployeeSelected" for="employeeNameSecond">Empleado asigando</label>
+            <select class="form-control" name="secondEmployeeSelected" id="secondEmployeeSelected"
+              [(ngModel)]="geographicalAreaService.geographicalAreaSelected.secondEmployee">
+              <option value="">Selecciona...</option>
+              <option *ngFor='let employee of employeeService.employees' [ngValue]="employee._id">
+                {{employee.name}} {{employee.lastName}}
+              </option>
+            </select>
+          </div>
+          <!-- Select third Employee -->
+          <div class="form-group">
+            <label for="thirdEmployeeSelected" for="employeeNameThird">Empleado asigando</label>
+            <select class="form-control" name="thirdEmployeeSelected" id="thirdEmployeeSelected"
+              [(ngModel)]="geographicalAreaService.geographicalAreaSelected.thirdEmployee">
+              <option value="">Selecciona...</option>
+              <option *ngFor='let employee of employeeService.employees' [ngValue]="employee._id">
+                {{employee.name}} {{employee.lastName}}
+              </option>
+            </select>
+          </div>
+          <!-- Select fourth Employee -->
+          <div class="form-group">
+            <label for="fourthEmployeeSelected" for="employeeNameFourth">Empleado asigando</label>
+            <select class="form-control" name="fourthEmployeeSelected" id="fourthEmployeeSelected"
+              [(ngModel)]="geographicalAreaService.geographicalAreaSelected.fourthEmployee">
+              <option value="">Selecciona...</option>
+              <option *ngFor='let employee of employeeService.employees' [ngValue]="employee._id">
+                {{employee.name}} {{employee.lastName}}
+              </option>
+            </select>
+          </div>
+          <div class="mt-3">
+            <button type="button" class="btn btn-success mr-2"
+              (click)="addGeographicalArea(geographicalAreaForm)">Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="resetForm(geographicalAreaForm)">Limpiar</button>
+          </div>
         </form>
       </div>
     </div>
@@ -42,9 +78,22 @@
           <tbody>
             <tr *ngFor="let geo of geographicalAreaService.geographicalArea">
               <td>{{geo.name}}</td>
-              <div *ngFor="let employee of geo.employee | keyvalue">
-                <td>{{ employee.value }}</td>
-              </div>
+              <td>
+                <ng-container *ngFor="let firstEmployee of geo.firstEmployee | keyvalue">
+                  <ng-container *ngIf="firstEmployee.key === 'name' || firstEmployee.key === 'lastName'">
+                    <span>
+                      {{firstEmployee.value}}
+                    </span>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngFor="let secondEmployee of geo.secondEmployee | keyvalue">
+                  <ng-container *ngIf="secondEmployee.key === 'name' || secondEmployee.key === 'lastName'">
+                    <span>
+                      {{secondEmployee.value}}
+                    </span>
+                  </ng-container>
+                </ng-container>
+              </td>              
               <td><a (click)="editGeographicalArea(geo)"><i class="fas fa-user-edit"></i></a></td>
               <td><a (click)="deleteGeographicalArea(geo._id)"><i class="fas fa-trash-alt"></i></a></td>
             </tr>

@@ -7,7 +7,7 @@ import { GeographicalArea } from '../models/geographical-area.model';
 })
 export class GeographicalAreaService {
 
-    geographicalAreaSelected: GeographicalArea;
+    geographicalAreaSelected: any;
     geographicalArea: GeographicalArea[];
     readonly URL_API = 'http://localhost:3000/api/geographicalArea';
 

@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { GeographicalAreaComponent } from './components/geographical-area/geographical-area.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GeographicalAreaComponent } from './components/geographical-area/geogra
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-    GeographicalAreaComponent
+    GeographicalAreaComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
