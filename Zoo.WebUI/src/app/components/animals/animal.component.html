@@ -1,0 +1,27 @@
+<div class="col">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Altura</th>
+          </thead>
+          <tbody>
+            <app-loading class="content" *ngIf="loading"></app-loading>
+            <tr *ngFor="let animal of animalService.animals">
+              <td>{{animal.name}}</td>
+              <td>{{animal.type}}</td>
+              <td>{{animal.category}}</td>
+              <td>{{animal.weight}}</td>
+              <td>{{animal.height}}</td>
+              <!-- <td><a (click)="editEmployee(employee)"><i class="fas fa-user-edit"></i></a></td>
+              <td><a (click)="deleteEmployee(employee._id)"><i class="fas fa-trash-alt"></i></a></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

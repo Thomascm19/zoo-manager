@@ -15,6 +15,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { GeographicalAreaComponent } from './components/geographical-area/geographical-area.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { AnimalComponent } from './components/animals/animal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     FooterComponent,
     HomeComponent,
     GeographicalAreaComponent,
-    LoadingComponent
+    LoadingComponent,
+    AnimalComponent
   ],
   imports: [
     BrowserModule,
