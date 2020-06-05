@@ -93,6 +93,20 @@
                     </span>
                   </ng-container>
                 </ng-container>
+                <ng-container *ngFor="let thirdEmployee of geo.thirdEmployee | keyvalue">
+                  <ng-container *ngIf="thirdEmployee.key === 'name' || thirdEmployee.key === 'lastName'">
+                    <span>
+                      {{thirdEmployee.value}}
+                    </span>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngFor="let fourthEmployee of geo.fourthEmployee | keyvalue">
+                  <ng-container *ngIf="fourthEmployee.key === 'name' || fourthEmployee.key === 'lastName'">
+                    <span>
+                      {{fourthEmployee.value}}
+                    </span>
+                  </ng-container>
+                </ng-container>
               </td>              
               <td><a (click)="editGeographicalArea(geo)"><i class="fas fa-user-edit"></i></a></td>
               <td><a (click)="deleteGeographicalArea(geo._id)"><i class="fas fa-trash-alt"></i></a></td>

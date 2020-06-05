@@ -12,11 +12,12 @@ export class EmployeesComponent implements OnInit {
 
   loading: boolean;
 
-  ngOnInit() {
-    this.getEmployees();
-  }
   constructor(public employeeService: EmployeeService) {
     this.loading = true;
+  }
+
+  ngOnInit() {
+    this.getEmployees();
   }
 
   getEmployees() {
@@ -51,7 +52,6 @@ export class EmployeesComponent implements OnInit {
     this.employeeService.deleteEmployee(id)
         .subscribe(res => {
           this.getEmployees();
-          console.log(res);
         });
   }
 

@@ -1,7 +1,7 @@
 export class Animal {
 
     // tslint:disable-next-line:variable-name
-    constructor(_id = '', name = '', type = '', category = '', weight = 0.0, height = 0.0) {
+    constructor(_id = '', name = '', type = '', category = '', weight = '', height = '') {
         this._id = _id;
         this.name = name;
         this.type = type;
@@ -15,6 +15,6 @@ export class Animal {
     name: string;
     type: string;
     category: string;
-    weight: number;
-    height: number;
+    weight: string;
+    height: string;
 }

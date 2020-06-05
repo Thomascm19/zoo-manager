@@ -1,13 +1,52 @@
+<div class="row">
+  <div class="col">
+    <div class="card" style="width: 28rem;">
+      <div class="card-body">
+        <form #animalForm="ngForm" (ngSubmit)="addAnimal()">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="animalService.selectedAnimal._id">
+          <div class="form-group">
+            <label for="animalName">Nombre del animal</label>
+            <input type="text" class="form-control" id="AnimalName" name="name" placeholder="Ingresa el nombre del animal"
+              #name='ngModel' [(ngModel)]="animalService.selectedAnimal.name">
+          </div>
+          <div class="form-group">
+            <label for="animalType">Tipo de animal</label>
+            <input type="text" class="form-control" id="AnimalType" name="type" placeholder="Ingresa el tipo de animal"
+              #type='ngModel' [(ngModel)]="animalService.selectedAnimal.type">
+          </div>
+          <div class="form-group">
+            <label for="animalCategory">Categoria del animal</label>
+            <input type="text" class="form-control" id="AnimalCategory" name="category" placeholder="Ingresa la categoria del animal"
+              #category='ngModel' [(ngModel)]="animalService.selectedAnimal.category">
+          </div>
+          <div class="form-group">
+            <label for="animalWeight">Peso del animal</label>
+            <input type="text" class="form-control" id="AnimalWeight" name="weight" placeholder="Ingresa el peso del animal"
+              #weight='ngModel' [(ngModel)]="animalService.selectedAnimal.weight">
+          </div>
+          <div class="form-group">
+            <label for="animalHeight">Altura del animal</label>
+            <input type="text" class="form-control" id="AnimalHeight" name="height" placeholder="Ingresa la altura del animal"
+              #height='ngModel' [(ngModel)]="animalService.selectedAnimal.height">
+          </div>
+          <button type="button" class="btn btn-success mr-2" (click)="addAnimal(animalForm)">Guardar</button>
+          <button type="button" class="btn btn-primary" (click)="resetForm(animalForm)">Limpiar</button>
+        </form>
+      </div>
+    </div>
+  </div>
 <div class="col">
     <div class="card">
       <div class="card-body">
-        <table class="table">
+        <table class="table table-hover table-sm">
           <thead class="thead-dark">
             <th scope="col">Nombre</th>
             <th scope="col">Tipo</th>
             <th scope="col">Categoria</th>
             <th scope="col">Peso</th>
             <th scope="col">Altura</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
           </thead>
           <tbody>
             <app-loading class="content" *ngIf="loading"></app-loading>
@@ -17,11 +56,12 @@
               <td>{{animal.category}}</td>
               <td>{{animal.weight}}</td>
               <td>{{animal.height}}</td>
-              <!-- <td><a (click)="editEmployee(employee)"><i class="fas fa-user-edit"></i></a></td>
-              <td><a (click)="deleteEmployee(employee._id)"><i class="fas fa-trash-alt"></i></a></td> -->
+              <td><a (click)="editAnimal(animal)"><i class="fas fa-user-edit"></i></a></td>
+              <td><a (click)="deleteAnimal(animal._id)"><i class="fas fa-trash-alt"></i></a></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+</div>

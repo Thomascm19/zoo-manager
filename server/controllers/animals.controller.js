@@ -1,13 +1,6 @@
 const animal = require('../models/animal')
 const animalController = {};
 
-// zooController.getZoo = async(req, res) => {    
-//     zoo.find({}, function(err, zooParam){
-//         GeographicalArea.populate(zooParam, {path: "geographicalArea"}, function(err, zooParam){
-//             res.json(zooParam)
-//         })
-//     })
-// };
 //Se obtienen todos los animales
 animalController.getAnimals = async (req, res) => {
     const animals = await animal.find();
