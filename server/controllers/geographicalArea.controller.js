@@ -39,7 +39,7 @@ geographicalAreaController.editGeographicalArea = async(req, res) => {
     const editGeographicalArea = {
         name: req.body.name
     }
-    await geographicalArea.findOneAndUpdate(id, {$set: editGeographicalArea}, {new: true});
+    await geographicalArea.findByIdAndUpdate(id, {$set: editGeographicalArea}, {new: true});
         res.json({
             status: 'Geographical Area update'
         })
@@ -48,7 +48,7 @@ geographicalAreaController.editGeographicalArea = async(req, res) => {
 //Elimina una sola zona geografica por el id 
 geographicalAreaController.deleteGeographicalArea = async (req, res) =>{
     const { id } = req.params.id;
-    await geographicalArea.findOneAndDelete(id);
+    await geographicalArea.findByIdAndRemove(id);
     res.json({
         status: 'Geographical Area Delete'
     })

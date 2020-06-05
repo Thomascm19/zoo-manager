@@ -23,7 +23,7 @@ zooController.editZoo = async(req, res) => {
         name: req.body.name,
         nit: req.body.nit
     }
-    await zoo.findOneAndUpdate(id, { $set: editZoo }, { new: true });
+    await zoo.findByIdAndUpdate(id, { $set: editZoo }, { new: true });
     res.json({
         status: 'zoo update'
     })
@@ -32,7 +32,7 @@ zooController.editZoo = async(req, res) => {
 //Se elimina el zoologico
 zooController.deletezoo = async(req, res) => {
     const { id } = req.params.id;
-    await zoo.findOneAndDelete(id);
+    await zoo.findByIdAndRemove(id);
     res.json({
         status: 'Zoo Delete'
     });
