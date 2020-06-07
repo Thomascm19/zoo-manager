@@ -4,6 +4,8 @@ import { EmployeeService } from '../../services/employee.service';
 import { EmployeesComponent } from '../employees/employees.component';
 import { GeographicalArea } from '../../models/geographical-area.model';
 import { NgForm, FormGroup } from '@angular/forms';
+import { AnimalComponent } from '../animals/animal.component';
+import { AnimalService } from 'src/app/services/animal.service';
 
 @Component({
   selector: 'app-geographical-area',
@@ -13,13 +15,18 @@ import { NgForm, FormGroup } from '@angular/forms';
 export class GeographicalAreaComponent implements OnInit {
 
   employeeComponent: EmployeesComponent;
-  constructor(public geographicalAreaService: GeographicalAreaService, public employeeService: EmployeeService) {
+  animalComponent: AnimalComponent;
+  constructor(public geographicalAreaService: GeographicalAreaService,
+              public employeeService: EmployeeService,
+              public animalService: AnimalService) {
     this.employeeComponent = new EmployeesComponent(this.employeeService);
+    this.animalComponent = new AnimalComponent(this.animalService);
   }
 
   ngOnInit() {
     this.getGeographicalArea();
     this.employeeComponent.getEmployees();
+    this.animalComponent.getAnimals();
   }
 
   getGeographicalArea() {
