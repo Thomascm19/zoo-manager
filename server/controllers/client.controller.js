@@ -12,9 +12,9 @@ clientController.createClients = async(req, res) => {
     const saveClient = new client({
         name: req.body.name,
         lastName: req.body.lastName,
-        edad: req.body.edad,
-        numDocumento: req.body.numDocumento,
-        correo: req.body.correo
+        age: req.body.age,
+        dni: req.body.dni,
+        email: req.body.email
     });
     await saveClient.save()
     res.json({
@@ -34,11 +34,11 @@ clientController.editClient = async(req, res) => {
     const editClient = {
         name: req.body.name,
         lastName: req.body.lastName,
-        edad: req.body.edad,
-        numDocumento: req.body.numDocumento,
-        correo: req.body.correo
+        age: req.body.age,
+        dni: req.body.dni,
+        email: req.body.email
     }
-    await client.findOneAndUpdate(id, { $set: editClient }, { new: true });
+    await client.findByIdAndUpdate(id, { $set: editClient }, { new: true });
     res.json({
         status: 'Client update'
     })
@@ -47,7 +47,7 @@ clientController.editClient = async(req, res) => {
 //Elimina un cliente por el id
 clientController.deleteClients = async(req, res) => {
     const { id } = req.params;
-    await client.findOneAndDelete(id);
+    await client.findByIdAndDelete(id);
     res.json({
         status: 'Client Delete'
     });

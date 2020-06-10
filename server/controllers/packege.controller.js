@@ -40,7 +40,7 @@ packegeController.editPackege = async(req, res) => {
         clientName: req.body.client.name,
         clientEdad: req.body.client.lastName
     }
-    await packege.findOneAndUpdate(id, { $set: editPackege }, { new: true });
+    await packege.findByIdAndUpdate(id, { $set: editPackege }, { new: true });
     res.json({
         status: 'Packege update'
     })
@@ -49,7 +49,7 @@ packegeController.editPackege = async(req, res) => {
 //Elimina un solo paquete por el id 
 packegeController.deletePackege = async(req, res) => {
     const { id } = req.params.id;
-    await packege.findOneAndDelete(id);
+    await packege.findByIdAndDelete(id);
     res.json({
         status: 'Packege Delete'
     })
