@@ -16,6 +16,8 @@ import { HomeComponent } from './components/home/home.component';
 import { GeographicalAreaComponent } from './components/geographical-area/geographical-area.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { AnimalComponent } from './components/animals/animal.component';
+import { VetComponent } from './components/vet/vet.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { AnimalComponent } from './components/animals/animal.component';
     HomeComponent,
     GeographicalAreaComponent,
     LoadingComponent,
-    AnimalComponent
+    AnimalComponent,
+    VetComponent
   ],
   imports: [
     BrowserModule,

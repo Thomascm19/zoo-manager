@@ -6,7 +6,7 @@ const geographicalAreaSchema = new Schema({
     firstEmployee: {type: Schema.ObjectId, ref: "Employee" },
     secondEmployee: { type: Schema.ObjectId, ref: "Employee" },
     thirdEmployee: { type: Schema.ObjectId, ref: "Employee" },
-    fourthEmployee: { type: Schema.ObjectId, ref: "Employee" },
+    fourthEmployee: { type: Schema.ObjectId, ref: "Employee" }
 })
 
 module.exports = mongoose.model('GeographicalArea', geographicalAreaSchema);

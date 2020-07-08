@@ -13,7 +13,7 @@ import { AnimalService } from 'src/app/services/animal.service';
   providers: [GeographicalAreaService]
 })
 export class GeographicalAreaComponent implements OnInit {
-
+  loading: boolean;
   employeeComponent: EmployeesComponent;
   animalComponent: AnimalComponent;
   constructor(public geographicalAreaService: GeographicalAreaService,
@@ -21,6 +21,7 @@ export class GeographicalAreaComponent implements OnInit {
               public animalService: AnimalService) {
     this.employeeComponent = new EmployeesComponent(this.employeeService);
     this.animalComponent = new AnimalComponent(this.animalService);
+    this.loading = true;
   }
 
   ngOnInit() {
@@ -32,7 +33,8 @@ export class GeographicalAreaComponent implements OnInit {
   getGeographicalArea() {
     this.geographicalAreaService.getGeographicalArea()
       .subscribe(res => {
-        console.log(this.geographicalAreaService.geographicalArea = res as GeographicalArea[]);
+        this.geographicalAreaService.geographicalArea = res as GeographicalArea[];
+        this.loading = false;
       });
   }
 

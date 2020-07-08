@@ -42,8 +42,9 @@ geographicalAreaController.editGeographicalArea = async(req, res) => {
         firstEmployee: req.body.firstEmployeeSelected,
         secondEmployee: req.body.secondEmployeeSelected,
         thirdEmployee: req.body.thirdEmployeeSelected,
-        fourthEmployee: req.body.fourthEmployeeSelected
+        fourthEmployee: req.body.fourthEmployeeSelected         
     }
+    getAnimals(req);
     await geographicalArea.findByIdAndUpdate(id, {$set: editGeographicalArea}, {new: true});
         res.json({
             status: 'Geographical Area update'
@@ -58,5 +59,21 @@ geographicalAreaController.deleteGeographicalArea = async (req, res) =>{
         status: 'Geographical Area Delete'
     })
 };
+
+
+function objectMap(object, mapFn) {
+    return Object.keys(object).reduce(function(result, key) {
+      result[key] = mapFn(object[key])
+      return result
+    }, {})
+  }
+//Obtiene los animales
+getAnimals = function(req) {
+    let body = req.body;
+    var newObject = objectMap(body, function(value) {
+        let animals = Object.getOwnPropertyNames(value);
+        return animals.substring(0,14);
+      })      
+}
 
 module.exports = geographicalAreaController;

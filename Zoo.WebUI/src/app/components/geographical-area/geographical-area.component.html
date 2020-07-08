@@ -63,15 +63,11 @@
           <hr>
           <!-- Select Animals -->
           <div class="form-row">
-          <div class="form-group col-md-6" *ngFor='let animal of animalService.animals'>
-            <label for="animalSelected" for="animalName">Animal asigando</label>
-            <select class="form-control" name="animalSelected" id="animalSelected"
-              [(ngModel)]="geographicalAreaService.geographicalAreaSelected.animal">
-              <option value="">Selecciona...</option>
-              <option *ngFor='let animal of animalService.animals' [ngValue]="animal._id">
-                {{animal.name}}
-              </option>
-            </select>
+          <div class="form-group col-md-6" *ngFor="let animal of animalService.animals; index as i">
+            <label for="{{'animalSelected'+ i}}">Animal asigando</label>
+            <input type="text" class="form-control" id="{{'animalSelected'+ i}}" name="{{'animalSelected'+ i}}"
+              #animalName='ngModel'
+              [(ngModel)]="animal.name" placeholder="{{animal.name}}" readonly>
           </div>
         </div>
           <div class="mt-3">
@@ -95,8 +91,9 @@
             <th scope="col">Eliminar</th>
           </thead>
           <tbody>
+            <app-loading class="content" *ngIf="loading"></app-loading>
             <tr *ngFor="let geo of geographicalAreaService.geographicalArea">
-              <td>{{geo.name}}</td>
+              <td>{{geo.name}}</td>              
               <td>
                 <ng-container *ngFor="let firstEmployee of geo.firstEmployee | keyvalue">
                   <ng-container *ngIf="firstEmployee.key === 'name' || firstEmployee.key === 'lastName'">

@@ -1,10 +1,41 @@
-<div class="card">
-    <h5 class="card-header">
-      Hola
-    </h5>
+<h5 class="text-center mb-5">
+  Hola Administrador
+</h5>
+<div class="row">
+<div class="col-sm-6">
+  <div class="card mb-5">
     <div class="card-body">
       <h5 class="card-title">Añade tus empleados</h5>
       <p class="card-text">Con nuestro nuevo formularios podras añadir a tus empleados</p>
       <a [routerLink]="['/employee']" class="btn btn-primary">Añadir</a>
     </div>
   </div>
+</div>
+<div class="col-sm-6">
+  <div class="card mb-5">
+    <div class="card-body">
+      <h5 class="card-title">Añade tus animales</h5>
+      <p class="card-text">Gestiona tus animales de una manera mas eficiente</p>
+      <a [routerLink]="['/animal']" class="btn btn-primary">Añadir</a>
+    </div>
+  </div>
+</div>
+  <div class="col-sm-6">
+    <div class="card mb-5">
+      <div class="card-body">
+        <h5 class="card-title">Añade a tus veterinarios</h5>
+        <p class="card-text">Crea un equipo de trabajo con los mejores veterinarios</p>
+        <a [routerLink]="['/vet']" class="btn btn-primary">Añadir</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card mb-5">
+      <div class="card-body">
+        <h5 class="card-title">Añade tus zonas geograficas</h5>
+        <p class="card-text">Monitorea y organiza las zonas geofraficas disponibles</p>
+        <a [routerLink]="['/geographical']" class="btn btn-primary">Añadir</a>
+      </div>
+    </div>
+  </div>
+</div>
