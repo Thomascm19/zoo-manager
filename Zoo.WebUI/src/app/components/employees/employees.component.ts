@@ -10,30 +10,36 @@ import { Employee } from 'src/app/models/employee.model';
 })
 export class EmployeesComponent implements OnInit {
 
+  loading: boolean;
+
+  constructor(public employeeService: EmployeeService) {
+    this.loading = true;
+  }
+
   ngOnInit() {
     this.getEmployees();
   }
-  constructor(public employeeService: EmployeeService) { }
 
   getEmployees() {
     this.employeeService.getEmployess()
       .subscribe(res => {
-       console.log(this.employeeService.employees = res as Employee[]);
+       this.employeeService.employees = res as Employee[];
+       this.loading = false;
       });
   }
 
   addEmployee(form?: NgForm) {
-    if (form.value.id) {
+    if (form.value._id) {
       this.employeeService.putEmployes(form.value)
         .subscribe(res => {
           this.getEmployees();
-          this.resetForm();
+          this.resetForm(form);
         });
     } else {
     this.employeeService.postEmployes(form.value)
       .subscribe(res => {
         this.getEmployees();
-        this.resetForm();
+        this.resetForm(form);
       });
     }
   }
@@ -46,7 +52,6 @@ export class EmployeesComponent implements OnInit {
     this.employeeService.deleteEmployee(id)
         .subscribe(res => {
           this.getEmployees();
-          console.log(res);
         });
   }
 

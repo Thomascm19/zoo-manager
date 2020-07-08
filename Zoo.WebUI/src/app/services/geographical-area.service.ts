@@ -7,7 +7,7 @@ import { GeographicalArea } from '../models/geographical-area.model';
 })
 export class GeographicalAreaService {
 
-    geographicalAreaSelected: GeographicalArea;
+    geographicalAreaSelected: any;
     geographicalArea: GeographicalArea[];
     readonly URL_API = 'http://localhost:3000/api/geographicalArea';
 
@@ -21,5 +21,13 @@ export class GeographicalAreaService {
 
     postGeographicalArea(geographicalArea: GeographicalArea) {
         return this.http.post(this.URL_API, geographicalArea);
+    }
+
+    putGeographicalArea(geographicalArea: GeographicalArea) {
+        return this.http.put(this.URL_API + `/${geographicalArea._id}`, geographicalArea);
+    }
+
+    deleteGeographicalArea(id: string) {
+        return this.http.delete(this.URL_API + `/${id}`);
     }
 }
