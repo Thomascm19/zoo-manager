@@ -16,7 +16,9 @@ app.use(cors({ origin: 'http://localhost:4200' }))
 //Routes
 app.use('/api/employees', require('./routes/employee.routes'));
 app.use('/api/zoo', require('./routes/zoo.routes'));
-app.use('/api/geographicalArea', require('./routes/geographicalArea.routes'))
+app.use('/api/geographicalArea', require('./routes/geographicalArea.routes'));
+app.use('/api/client', require('./routes/client.routes'));
+app.use('/api/packege', require('./routes/packege.routes'));
 
 //Starting server
 app.listen(app.get('port'), () => {
