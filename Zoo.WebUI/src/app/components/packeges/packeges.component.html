@@ -2,7 +2,7 @@
     <div class="col">
         <div class="card" style="width: 28rem;">
             <div class="card-body">
-                <form #packegeForm="ngForm" (ngSubmit)="addpackege()">
+                <form #packegeForm="ngForm" (ngSubmit)="addPackege()">
                     <input type="hidden" name="id" #id="ngModel" [(ngModel)]="packegeService.packegeSelected._id">
                     <div class="form-group">
                         <label for="packegeName">Nombre</label>
@@ -17,8 +17,14 @@
                         <input type="text" class="form-control" id="packegeDescripcion" name="descripcion" placeholder="Ingrese una descripcion" #descripcion='ngModel' [(ngModel)]="packegeService.packegeSelected.descripcion">
                     </div>
                     <div class="form-group">
-                        <label for="packegeCliente">Cliente</label>
-                        <input type="text" class="form-control" id="packegeCliente" name="cliente" placeholder="seleccione el cliente" #cliente='ngModel' [(ngModel)]="packegeService.packegeSelected.client">
+                        <label for="firstClientSelected" for="clientName">Cliente</label>
+                        <select class="form-control" name="firstClientSelected" id="firstClientSelected" [(ngModel)]="packegeService.packegeSelected.client">
+              <option value="">Selecciona...</option>
+              <option *ngFor='let client of clientService.client' [ngValue]="client._id">
+                {{client.name}} {{client.lastName}}
+              </option>
+            </select>
+
                     </div>
                     <button type="button" class="btn btn-success mr-2" (click)="addPackege(packegeForm)">Guardar</button>
                     <button type="button" class="btn btn-primary" (click)="resetForm(packegeForm)">Limpiar</button>
@@ -44,7 +50,15 @@
                             <td>{{packege.name}}</td>
                             <td>{{packege.precio}}</td>
                             <td>{{packege.descripcion}}</td>
-                            <td>{{packege.cliente}}</td>
+                            <td>
+                                <ng-container *ngFor="let firstClient of packege.client | keyvalue">
+                                    <ng-container *ngIf="firstClient.key === 'name' || firstClient.key === 'lastName'">
+                                        <span>
+                                      {{firstClient.value}}
+                                    </span>
+                                    </ng-container>
+                                </ng-container>
+                            </td>
                             <td><a (click)="editPackege(packege)"><i class="fas fa-user-edit"></i></a></td>
                             <td><a (click)="deletePackege(packege._id)"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>

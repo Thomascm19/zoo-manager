@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PackegeService } from 'src/app/services/packege.service';
 import { Packege } from 'src/app/models/packege.model';
 import { NgForm } from '@angular/forms';
+import { ClientService } from 'src/app/services/client.service';
+import { ClientsComponent } from '../clients/clients.component';
 
 @Component({
   selector: 'app-packeges',
@@ -9,11 +11,14 @@ import { NgForm } from '@angular/forms';
   providers: [PackegeService]
 })
 export class PackegesComponent implements OnInit {
-
-  constructor(public packegeService: PackegeService) { }
+clientComponent: ClientsComponent;
+  constructor(public packegeService: PackegeService, public clientService : ClientService) { 
+    this.clientComponent = new ClientsComponent(this.clientService)
+   }
 
   ngOnInit(): void {
     this.getPackege();
+    this.clientComponent.getClient();
   }
 
   getPackege() {
@@ -43,7 +48,7 @@ export class PackegesComponent implements OnInit {
     this.packegeService.packegeSelected = packege;
   }
 
-  deleteClient(id: string) {
+  deletePackege(id: string) {
     this.packegeService.deletePackege(id)
         .subscribe(res => {
           this.getPackege();

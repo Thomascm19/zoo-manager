@@ -15,6 +15,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { GeographicalAreaComponent } from './components/geographical-area/geographical-area.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import { PackegesComponent } from './components/packeges/packeges.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ClientsComponent } from './components/clients/clients.component';
     FooterComponent,
     HomeComponent,
     GeographicalAreaComponent,
-    ClientsComponent
+    ClientsComponent,
+    PackegesComponent   
   ],
   imports: [
     BrowserModule,
