@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col">
+    <div class="card" style="width: 28rem;">
+      <div class="card-body">
+        <form #clientForm="ngForm" (ngSubmit)="addClient()">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="clientService.selectedClient._id">
+          <div class="form-group">
+            <label for="clientName">Nombre</label>
+            <input type="text" class="form-control" id="clientName" name="name" placeholder="Ingresa tu nombre"
+              #name='ngModel' [(ngModel)]="clientService.selectedClient.name">
+          </div>
+          <div class="form-group">
+            <label for="employeeLastName">Apellido</label>
+            <input type="text" class="form-control" id="employeeLastName" name="lastName"
+              placeholder="Ingresa tu apellido" #lastName='ngModel'
+              [(ngModel)]="clientService.selectedClient.lastName">
+          </div>
+          <div class="form-group">
+            <label for="clientAge">Edad</label>
+            <input type="number" class="form-control" id="clientAge" name="age"
+              placeholder="Ingresa tu edad" #age='ngModel'
+              [(ngModel)]="clientService.selectedClient.age">
+          </div>
+          <div class="form-group">
+            <label for="employeeLastName">DNI</label>
+            <input type="text" class="form-control" id="clientDni" name="dni"
+              placeholder="Ingresa tu DNI" #dni='ngModel'
+              [(ngModel)]="clientService.selectedClient.dni">
+          </div>
+          <div class="form-group">
+            <label for="clientEmail">Email</label>
+            <input type="email" class="form-control" id="clientemail" name="email"
+              placeholder="Ingresa tu email" #email='ngModel'
+              [(ngModel)]="clientService.selectedClient.email">
+          </div>
+          <button type="button" class="btn btn-success mr-2" (click)="addClient(clientForm)">Guardar</button>
+          <button type="button" class="btn btn-primary" (click)="resetForm(clientForm)">Limpiar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Edad</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Email</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </thead>
+          <tbody>
+            <app-loading class="content" *ngIf="loading"></app-loading>
+            <tr *ngFor="let client of clientService.clients">
+              <td>{{client.name}}</td>
+              <td>{{client.lastName}}</td>
+              <td>{{client.age}}</td>
+              <td>{{client.dni}}</td>
+              <td>{{client.email}}</td>
+              <td><a (click)="editClient(client)"><i class="fas fa-user-edit"></i></a></td>
+              <td><a (click)="deleteClient(client._id)"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

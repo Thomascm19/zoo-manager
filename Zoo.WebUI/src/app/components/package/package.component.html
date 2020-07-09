@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col">
+      <div class="card" style="width: 28rem;">
+        <div class="card-body">
+          <form #packageForm="ngForm" (ngSubmit)="addPackage()">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="packageService.selectedPackage._id">
+            <div class="form-group">
+              <label for="packageName">Nombre del paquete</label>
+              <input type="text" class="form-control" id="packageName" name="name" placeholder="Ingresa el nombre del paquete"
+                #name='ngModel' [(ngModel)]="packageService.selectedPackage.name">
+            </div>
+            <div class="form-group">
+              <label for="packagePrice">Precio del paquete</label>
+              <input type="number" class="form-control" id="packagePrice" name="price"
+                placeholder="Agrega el precio del paquete" #price='ngModel'
+                [(ngModel)]="packageService.selectedPackage.price">
+            </div>
+            <div class="form-group">
+              <label for="packageDescription">Descripcion del paquete</label>
+              <input type="text" class="form-control" id="packageDescription" name="description"
+                placeholder="Ingresa la descripcion del paquete" #price='ngModel'
+                [(ngModel)]="packageService.selectedPackage.description">
+            </div>
+            <div class="form-row">
+              <!-- Select first Employee -->
+              <div class="form-group col-md-6">
+                <label for="firstEmployeclienteSelected" for="client">Cliente asigando</label>
+                <select class="form-control" name="client" id="client"
+                  [(ngModel)]="packageService.selectedPackage.client">
+                  <option value="">Selecciona...</option>
+                  <option *ngFor='let client of clientService.clients' [ngValue]="client._id">
+                    {{client.name}} {{client.lastName}}
+                  </option>
+                </select>
+              </div>              
+            </div>
+            <button type="button" class="btn btn-success mr-2" (click)="addPackage(packageForm)">Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="resetForm(packageForm)">Limpiar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+            </thead>
+            <tbody>
+              <app-loading class="content" *ngIf="loading"></app-loading>
+              <tr *ngFor="let package of packageService.packages">
+                <td>{{package.name}}</td>
+                <td>{{package.price}}</td>
+                <td>{{package.description}}</td>
+                <td>
+                <ng-container *ngFor="let client of package.client | keyvalue">
+                  <ng-container *ngIf="client.key === 'name' || client.key === 'lastName'">
+                    <span>
+                      {{client.value}}
+                    </span>
+                  </ng-container>
+                </ng-container>
+              </td>
+                <td><a (click)="editPackage(package)"><i class="fas fa-user-edit"></i></a></td>
+                <td><a (click)="deletePackage(package._id)"><i class="fas fa-trash-alt"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
