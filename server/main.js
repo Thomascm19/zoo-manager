@@ -18,6 +18,7 @@ app.use('/api/employees', require('./routes/employee.routes'));
 app.use('/api/geographicalArea', require('./routes/geographicalArea.routes'));
 app.use('/api/animals', require('./routes/animals.routes'));
 app.use('/api/vet', require('./routes/vet.routes'));
+app.use('/api/date', require('./routes/date.routes'));
 app.use('/api/client', require('./routes/client.routes'));
 app.use('/api/package', require('./routes/package.routes'));
 

@@ -19,6 +19,8 @@ import { AnimalComponent } from './components/animals/animal.component';
 import { VetComponent } from './components/vet/vet.component';
 import { PackageComponent } from './components/package/package.component';
 import { ClientComponent } from './components/client/client.component';
+import { ZooComponent } from './components/zoo/zoo.component';
+import { DateComponent } from './components/date/date.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { ClientComponent } from './components/client/client.component';
     AnimalComponent,
     VetComponent,
     PackageComponent,
-    ClientComponent
+    ClientComponent,
+    ZooComponent,
+    DateComponent
   ],
   imports: [
     BrowserModule,
